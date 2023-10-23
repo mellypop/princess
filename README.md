@@ -10,8 +10,9 @@ must support [powerline fonts](https://github.com/powerline/fonts) otherwise you
 will be missing the glyphs used to create the rounded edges.
 
 The font used in the example image is [Latin Modern Mono](https://www.fontsquirrel.com/fonts/latin-modern-mono),
-but it may be a better option to use one of the modifed fonts that powerline
-provides. Vscode's terminal emulator handles Latin Modern Mono just fine, but
+which I found thanks to [compute cuter](https://computecuter.com) It may be a
+better option to use one of the modifed fonts that powerline provides, though.
+Vscode's terminal emulator handles Latin Modern Mono just fine, but
 iTerm2 doesn't like to play well with this theme right now.
 
 ## Installation
