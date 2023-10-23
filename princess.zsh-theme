@@ -39,7 +39,7 @@ precmd() {
     last_stat="%(?.${success}.${failure})"
 
     # Set up the prompt
-    prompt1="%F{$pink}╭──%B%F{${white}%}%K{${pink}%} $italstart%n$italend%K{${white}}%F{${pink}}%m%f%k%F{${${white}}} %B%F{${white}}→%F{${${blue}}} %b%3~ %f"
+    prompt1="%F{$pink}╭──%B%F{$pink}%F{$white}%}%K{${pink}%} $italstart%n$italend %K{${white}}%F{${pink}} %m %f%k%F{${${white}}} %B%F{${white}}→%F{${${blue}}} %b%3~ %f"
     prompt2="%F{$pink}╰──${last_stat}%f"
 }
 
@@ -47,7 +47,7 @@ separator() {
     local sep="%F{$pink}"
 
 	local terminal_width=$(tput cols)
-	local prompt_len=${#${(%):---- %n--%m- - %3~ }}
+	local prompt_len=${#${(%):---- %n---%m-- - %3~ }}
 	local git_prompt_skel=""
 
 	if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
