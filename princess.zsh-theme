@@ -12,23 +12,23 @@ setopt PROMPT_SUBST
 precmd() {
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         # If we're inside a git repository, prepare to display git info
-        local unstaged_count=$(git diff --numstat | wc -l)
-        local staged_count=$(git diff --cached --numstat | wc -l)
-        local untracked_count=$(git ls-files --others --exclude-standard | wc -l)
+        local unstaged_count=$(git diff --numstat | wc -l | sed 's/^[[:space:]]*//g')
+        local staged_count=$(git diff --cached --numstat | wc -l | sed 's/^[[:space:]]*//g')
+        local untracked_count=$(git ls-files --others --exclude-standard | wc -l | sed 's/^[[:space:]]*//g')
         local branch=$(git branch --show-current)
 
         git_prompt="%B%F{$pink}%K{$pink}%F{black}👑%F{$blue} ${branch} "
 
         if ((staged_count!=0)); then
-            git_prompt+="%F{#080}${staged_count}♥"
+            git_prompt+="%F{#080}${staged_count}♥ "
         fi
 
         if ((unstaged_count!=0)); then
-            git_prompt+="%F{black}${unstaged_count}♡"
+            git_prompt+="%F{black}${unstaged_count}♡ "
         fi
 
         if ((untracked_count!=0)); then
-            git_prompt+="%F{black}${untracked_count}❣"
+            git_prompt+="%F{black}${untracked_count}❣ "
         fi
 
         git_prompt+="%k"
@@ -51,9 +51,9 @@ separator() {
     local git_prompt_skel=""
 
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-        local unstaged_count=$(git diff --numstat | wc -l)
-        local staged_count=$(git diff --cached --numstat | wc -l)
-        local untracked_count=$(git ls-files --others --exclude-standard | wc -l)
+        local unstaged_count=$(git diff --numstat | wc -l | sed 's/^[[:space:]]*//g')
+        local staged_count=$(git diff --cached --numstat | wc -l | sed 's/^[[:space:]]*//g')
+        local untracked_count=$(git ls-files --others --exclude-standard | wc -l | sed 's/^[[:space:]]*//g')
 
         local current_branch=$(git branch --show-current)
 
