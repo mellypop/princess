@@ -20,15 +20,15 @@ precmd() {
         git_prompt="%B%F{$pink}%K{$pink}%F{black}👑%F{$blue} ${branch} "
 
         if ((staged_count!=0)); then
-            git_prompt+="%F{#080}${staged_count}♥ "
+            git_prompt+="%F{$white}${staged_count}♥ "
         fi
 
         if ((unstaged_count!=0)); then
-            git_prompt+="%F{black}${unstaged_count}♡ "
+            git_prompt+="%F{$white}${unstaged_count}♡ "
         fi
 
         if ((untracked_count!=0)); then
-            git_prompt+="%F{black}${untracked_count}❣ "
+            git_prompt+="%F{$white}${untracked_count}❣ "
         fi
 
         git_prompt+="%k"
