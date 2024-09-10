@@ -17,7 +17,7 @@ precmd() {
         local untracked_count=$(git ls-files --others --exclude-standard | wc -l | sed 's/^[[:space:]]*//g')
         local branch=$(git branch --show-current)
 
-        git_prompt="%B%F{$pink}%K{$pink}%F{black}👑%F{$blue} ${branch} "
+        git_prompt="%B%F{$pink}%K{$pink}%F{black}👑 %F{$white}${branch} "
 
         if ((staged_count!=0)); then
             git_prompt+="%F{$white}${staged_count}♥ "
