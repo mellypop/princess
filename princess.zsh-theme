@@ -20,16 +20,16 @@ precmd() {
         git_prompt="%B%F{$pink}%K{$pink}%F{black}👑%F{$blue} ${branch} "
 
         if ((staged_count!=0)); then
-			git_prompt+="%F{#080}${staged_count}⭑ "
-		fi
+            git_prompt+="%F{#080}${staged_count}♥"
+        fi
 
-		if ((unstaged_count!=0)); then
-			git_prompt+="%F{black}${unstaged_count}⭒ "
-		fi
+        if ((unstaged_count!=0)); then
+            git_prompt+="%F{black}${unstaged_count}♡"
+        fi
 
-		if ((untracked_count!=0)); then
-			git_prompt+="%F{black}${untracked_count}! "
-		fi
+        if ((untracked_count!=0)); then
+            git_prompt+="%F{black}${untracked_count}❣"
+        fi
 
         git_prompt+="%k"
     else
@@ -46,41 +46,41 @@ precmd() {
 separator() {
     local sep="%F{$pink}"
 
-	local terminal_width=$(tput cols)
-	local prompt_len=${#${(%):---- %n---%m-- - %3~ }}
-	local git_prompt_skel=""
+    local terminal_width=$(tput cols)
+    local prompt_len=${#${(%):---- %n---%m-- - %3~ }}
+    local git_prompt_skel=""
 
-	if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-		local unstaged_count=$(git diff --numstat | wc -l)
-		local staged_count=$(git diff --cached --numstat | wc -l)
-		local untracked_count=$(git ls-files --others --exclude-standard | wc -l)
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        local unstaged_count=$(git diff --numstat | wc -l)
+        local staged_count=$(git diff --cached --numstat | wc -l)
+        local untracked_count=$(git ls-files --others --exclude-standard | wc -l)
 
-		local current_branch=$(git branch --show-current)
+        local current_branch=$(git branch --show-current)
 
-		git_prompt_skel+=" 👑${current_branch} "
+        git_prompt_skel+=" 👑${current_branch} "
 
-		if ((staged_count!=0)); then
-			git_prompt_skel+="${staged_count}+ "
-		fi
+        if ((staged_count!=0)); then
+            git_prompt_skel+="${staged_count}+ "
+        fi
 
-		if ((unstaged_count!=0)); then
-			git_prompt_skel+="${unstaged_count}* "
-		fi
+        if ((unstaged_count!=0)); then
+            git_prompt_skel+="${unstaged_count}* "
+        fi
 
-		if ((untracked_count!=0)); then
-			git_prompt_skel+="${untracked_count}! "
-		fi
-	fi
+        if ((untracked_count!=0)); then
+            git_prompt_skel+="${untracked_count}! "
+        fi
+    fi
 
-	local git_prompt_len=${#git_prompt_skel}
+    local git_prompt_len=${#git_prompt_skel}
 
-	separator_len=$((terminal_width - prompt_len - git_prompt_len))
+    separator_len=$((terminal_width - prompt_len - git_prompt_len))
 
-	for ((i=0; i < separator_len; i++)); do
-		sep+="─"
-	done
+    for ((i=0; i < separator_len; i++)); do
+        sep+="─"
+    done
 
-	echo "$sep"
+    echo "$sep"
 }
 
 PROMPT='${prompt1}%F{#644}$(separator)$git_prompt%f%k%b
